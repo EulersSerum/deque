@@ -18,7 +18,7 @@ public class LinkedList{
 
   public Node removeFirst(){
     Node nodeRef = firstNode;
-    if(!isEmpty()) firstNode = firstNode.next();
+    if(!isEmpty()) firstNode = firstNode.next;
     return nodeRef;
   }
 
@@ -27,6 +27,14 @@ public class LinkedList{
 
     if(myList.isEmpty()) System.out.println("It's empty.");
     else System.out.println("Has nodes in it.");
+
+    for(int i = 0; i < args.length; i++){
+      myList.insertFirst(args[i]);
+    }
+
+    while(!myList.isEmpty()){
+      System.out.println(myList.removeFirst().data);
+    }
 
   }
 
