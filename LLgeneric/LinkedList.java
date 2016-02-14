@@ -1,4 +1,4 @@
-public class LinkedList{
+public class LinkedList<Item>{
 
   public Node firstNode;
 
@@ -10,7 +10,7 @@ public class LinkedList{
     return (firstNode == null);
   }
 
-  public void insertFirst(String data){
+  public void insertFirst(Item data){
     Node newNode = new Node(data);
     newNode.next = firstNode;
     firstNode = newNode;
@@ -22,6 +22,17 @@ public class LinkedList{
     return nodeRef;
   }
 
+  public class Node<Item> {
+
+    Item data;
+    Node next;
+
+    public Node(Item item){
+      data = item;
+    }
+
+  }
+
   public static void main(String[] args){
     LinkedList myList = new LinkedList();
 
@@ -29,7 +40,7 @@ public class LinkedList{
     else System.out.println("Has nodes in it.");
 
     for(int i = 0; i < args.length; i++){
-      myList.insertFirst(args[i]);
+      myList.insertFirst(Integer.parseInt(args[i]));
     }
 
     while(!myList.isEmpty()){
