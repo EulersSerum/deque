@@ -76,7 +76,7 @@ public Node removeLast(){
         }
 }
 
-class Node{
+class Node {
 Item data;
 Node next;
 Node previous;
@@ -89,31 +89,52 @@ public Node(Item item){
 public static void main(String[] args){
         Deque<String> myDeque = new Deque<String>();
 
-        for(int j = 0; j < 4; j++) {
-                System.out.println("Adding args to head.");
-                for(int i = 0; i < args.length; i++) {
-                        myDeque.addFirst(args[i]+Integer.toString(i));
-                }
+        String[] test1 = {"001", "002", "003", "004"};
+        String[] test2 = {"005", "006", "007", "008"};
+        String[] test3 = {"009", "010", "011", "012"};
+        String[] test4 = {"013", "014", "015", "016"};
 
-                System.out.println("Adding args to tail.");
-                for(int i = 0; i < args.length; i++) {
-                        myDeque.addLast(args[i]+Integer.toString(i));
-                }
-
-                if(j%2 == 1) {
-                        System.out.println("Popping args from tail.");
-                        for(int i = 0; myDeque.size > 0; i++) {
-                                System.out.println(myDeque.removeLast().data);
-                        }
-                }
-
-                if(j%2 != 1) {
-                        System.out.println("Popping args from head.");
-                        for(int i = 0; myDeque.size > 0; i++) {
-                                System.out.println(myDeque.removeFirst().data);
-                        }
-                }
+        System.out.println("Adding test1 to head.");
+        for(int i = 0; i < test1.length; i++){
+          myDeque.addFirst(test1[i]);
         }
+
+        System.out.println("Popping 1 element from head.");
+        System.out.println(myDeque.removeFirst().data);
+
+        System.out.println("Popping 1 element from tail.");
+        System.out.println(myDeque.removeLast().data);
+
+        System.out.println("Adding test2 to head.");
+        for(int i = 0; i < test1.length; i++){
+          myDeque.addFirst(test2[i]);
+        }
+
+        System.out.println("Popping all elements from head");
+        for(int i = 0; myDeque.size > 0; i++){
+          System.out.println(myDeque.removeFirst().data);
+        }
+
+        System.out.println("Adding test3 to head.");
+        for(int i = 0; i < test3.length; i++){
+          myDeque.addFirst(test3[i]);
+        }
+
+        System.out.println("Popping 1 element from tail.");
+        System.out.println(myDeque.removeLast().data);
+        System.out.println("Popping 1 element from head.");
+        System.out.println(myDeque.removeFirst().data);
+
+        System.out.println("Adding test4 to tail.");
+        for(int i = 0; i < test4.length; i++){
+          myDeque.addLast(test4[i]);
+        }
+
+        System.out.println("Popping all elements from tail");
+        for(int i = 0; myDeque.size > 0; i++){
+          System.out.println(myDeque.removeLast().data);
+        }
+
 
 
 }
