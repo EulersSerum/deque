@@ -1,6 +1,7 @@
 
+import java.util.Iterator;
 
-public class Deque<Item> {
+public class Deque<Item> implements Iterable<Item> {
 
 private Node headNode;
 private Node tailNode;
@@ -26,10 +27,6 @@ public void addFirst(Item item){
         if(size == 1) {
                 headNode = new Node(item);
                 tailNode = headNode;
-                headNode.next = tailNode;
-                headNode.previous = null;
-                tailNode.previous = headNode;
-                tailNode.next = null;
         } else {
                 Node newNode = new Node(item);
                 newNode.next = headNode;
@@ -52,43 +49,60 @@ public void addLast(Item item){
 }
 
 public Node removeFirst(){
-        if(size > 0) {
+        if(!isEmpty()) {
                 Node refNode = headNode;
                 headNode = headNode.next;
-                headNode.previous = null;
+                //If you're on the last node it's going to point to null
+                //and there will be no .previous.
+                if(size > 1) headNode.previous = null;
                 size--;
                 return refNode;
-        }
-        else {
-                headNode = null;
-                tailNode = null;
-                return null;
-        }
-
+        } else return null;
 }
 
 public Node removeLast(){
-        if(size > 0) {
+        if(!isEmpty()) {
                 Node refNode = tailNode;
                 tailNode = tailNode.previous;
-                tailNode.next = null;
+                if(size > 1) tailNode.next = null;
                 size--;
                 return refNode;
-        }
-        else {
-                headNode = null;
-                tailNode = null;
-                return null;
-        }
+        } else return null;
 }
 
-class Node {
+public Iterator<Item> iterator() {
+  return new DequeIterator();
+}
+
+private class Node<Item> {
 Item data;
 Node next;
 Node previous;
 public Node(Item item){
         data = item;
 }
+
+}
+
+private class DequeIterator implements Iterator<Item> {
+
+  private Node<Item> current = headNode;
+
+  public boolean hasNext(){
+    return current != null;
+  }
+
+  public void remove(){
+    throw new java.lang.UnsupportedOperationException();
+  }
+
+  public Item next(){
+    if(!hasNext()) throw new java.util.NoSuchElementException();
+
+    Item item = current.item;
+    current = current.next;
+    return item;
+  }
 
 }
 
