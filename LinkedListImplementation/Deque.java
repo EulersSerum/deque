@@ -26,6 +26,10 @@ public void addFirst(Item item){
         if(size == 1) {
                 headNode = new Node(item);
                 tailNode = headNode;
+                headNode.next = tailNode;
+                headNode.previous = null;
+                tailNode.previous = headNode;
+                tailNode.next = null;
         } else {
                 Node newNode = new Node(item);
                 newNode.next = headNode;
@@ -51,6 +55,7 @@ public Node removeFirst(){
         if(size > 0) {
                 Node refNode = headNode;
                 headNode = headNode.next;
+                headNode.previous = null;
                 size--;
                 return refNode;
         }
@@ -66,6 +71,7 @@ public Node removeLast(){
         if(size > 0) {
                 Node refNode = tailNode;
                 tailNode = tailNode.previous;
+                tailNode.next = null;
                 size--;
                 return refNode;
         }
@@ -101,6 +107,7 @@ public static void main(String[] args){
 
         System.out.println("Popping 1 element from head.");
         System.out.println(myDeque.removeFirst().data);
+
 
         System.out.println("Popping 1 element from tail.");
         System.out.println(myDeque.removeLast().data);
