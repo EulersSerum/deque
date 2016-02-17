@@ -17,17 +17,21 @@ public class Deque {
   }
 
   public void addFirst(int data){
+    checkSize();
     dataArray[pointer] = data;
     size++;
-    checkSize();
+
     pointer++;
   }
 
   public int removeFirst(){
+    checkSize();
+
     int data = dataArray[pointer];
     size--;
-    checkSize();
+
     pointer--;
+
     return data;
   }
 
@@ -35,14 +39,14 @@ public class Deque {
     int[] newArray;
     if(size > dataArray.length/2){
       newArray = new int[dataArray.length*2];
-      for(int i = 0; i < size; i++){
+      for(int i = 0; i <= size; i++){
         newArray[i] = dataArray[i];
       }
       dataArray = newArray;
     }
     if(size < dataArray.length/4){
       newArray = new int[dataArray.length/2];
-      for(int i = 0; i < size; i++){
+      for(int i = 0; i <= size; i++){
         newArray[i] = dataArray[i];
       }
       dataArray = newArray;
