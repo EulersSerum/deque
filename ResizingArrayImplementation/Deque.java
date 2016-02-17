@@ -1,3 +1,5 @@
+//TODO: There is an issue where data is lost when array is resized.
+
 public class Deque {
 
   //make it more like a stack for the first try;
