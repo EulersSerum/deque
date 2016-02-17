@@ -2,8 +2,8 @@ import java.util.Iterator;
 
 public class Deque<Item> implements Iterable<Item> {
 
-private Node headNode;
-private Node tailNode;
+private Node<Item> headNode;
+private Node<Item> tailNode;
 private int size;
 
 public Deque(){
@@ -73,7 +73,7 @@ public Iterator<Item> iterator() {
         return new DequeIterator();
 }
 
-class Node {
+class Node<Item>{
 Item data;
 Node next;
 Node previous;
@@ -85,7 +85,7 @@ public Node(Item item){
 
 private class DequeIterator implements Iterator<Item> {
 
-private Node current = headNode;
+private Node<Item> current = headNode;
 
 public boolean hasNext(){
         return current != null;
